@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<div id="example"></div>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+	<script type="text/babel">
+    function get(source,callback) {
+      var request = new Request(source);
+      fetch(request)
+      .then(res => res.json())
+      .then(arr => callback(arr[0])) 
+    }
+    class UserGist extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {username: '',lastGistUrl: ''};
+      }
+      componentDidMount() {
+        var usr = get(this.props.source,(usr) => {
+          this.setState({
+            username: usr.owner.login,
+            lastGistUrl: usr.html_url
+          });
+        });
+      }
+    /*
+    
+    */
+    render() {
+      var value = this.state.value;
+      return (
+        <div>
+          {this.state.username}'s last gist is
+          <a href={this.state.lastGistUrl}>here</a>.
+        </div>
+      );
+    } 
+  }
+  ReactDOM.render(
+    <UserGist source="https://api.github.com/users/octocat/gists" />,
+    document.getElementById("example")
+  );
+  </script>
+</body>
+
+</html>

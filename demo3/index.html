@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="example"></div>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+    <script type="text/babel">
+      var arr = [
+        <h1>Hello react</h1>,
+        <h2>Hello Node</h2>
+      ];
+      ReactDOM.render(
+        <div>{arr}</div>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

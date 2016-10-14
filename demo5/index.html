@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="example"></div>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+    <script type="text/babel">
+       class NodeList extends React.Component{
+        render() {
+          return (
+            <ol>
+            {
+              React.Children.map(this.props.children,(child) => {
+                return <li>{child}</li>;
+              })
+            }
+            </ol>
+          );
+        }
+      }
+      ReactDOM.render(
+        <NodeList>
+          <span>Hello!</span>
+          <p>LGY</p>
+        </NodeList>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
